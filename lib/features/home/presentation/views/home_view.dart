@@ -16,13 +16,18 @@ class HomeView extends StatelessWidget {
           getIt<HomeViewModel>()..doEvent(GetHomeProductsEvent()),
       child: Scaffold(
         body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
-              height: 200,
+              height: 450,
               child: BlocBuilder<HomeViewModel, HomeState>(
                 builder: (context, state) {
                   if (state.homeProductState?.isLoading ?? false) {
-                    return CircularProgressIndicator();
+                    return SizedBox(
+                      height: 50,
+                      width: 50,
+                      child: CircularProgressIndicator(),
+                    );
                   }
                   if (state.homeProductState?.errMsg != null) {
                     return Center(child: Text(state.homeProductState!.errMsg!));
